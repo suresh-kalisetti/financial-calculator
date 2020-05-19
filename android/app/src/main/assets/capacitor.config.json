@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "app.financial.calculator",
   "appName": "financial-calculator",
   "bundledWebRuntime": false,
   "npmClient": "npm",
