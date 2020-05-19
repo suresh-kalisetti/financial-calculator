@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -37,6 +37,11 @@
           <button mat-button color="primary" [disabled]="!emiForm.valid" (click)="calculateEMI()">Submit</button>
         </div>
       </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="showResult">
+    <ion-card-content>
+      Monthly EMI - 1000
     </ion-card-content>
   </ion-card>
 </ion-content>
