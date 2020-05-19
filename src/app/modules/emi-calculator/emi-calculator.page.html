@@ -15,26 +15,26 @@
   </ion-header>
   <ion-card>
     <ion-card-content>
-      <form>
+      <form [formGroup]="emiForm">
         <mat-form-field class="full-width">
           <mat-label>Loan Amount</mat-label>
-          <input type="number" matInput placeholder="Enter Loan Amount" value="">
+          <input type="number" matInput placeholder="Enter Loan Amount" formControlName="loanAmount">
         </mat-form-field>
         <mat-form-field class="full-width">
           <mat-label>Interest Rate</mat-label>
-          <input type="number" matInput placeholder="Enter Interest Rate">
+          <input type="number" matInput placeholder="Enter Interest Rate" formControlName="interestRate">
         </mat-form-field>
         <mat-form-field class="full-width">
           <mat-label>Loan Tenure</mat-label>
-          <input type="number" matInput placeholder="Enter Loan Tenure">
+          <input type="number" matInput placeholder="Enter Loan Tenure" formControlName="loanTenure">
         </mat-form-field>
-        <mat-radio-group aria-label="Select an option">
+        <mat-radio-group aria-label="Select an option" formControlName="tenureType">
           <mat-radio-button value="1">Months</mat-radio-button>
           <mat-radio-button value="2">Years</mat-radio-button>
         </mat-radio-group>
         <div class="button-row">
-          <button mat-flat-button>Clear</button>
-          <button mat-button color="primary">Submit</button>
+          <button mat-flat-button (click)="clearForm()">Clear</button>
+          <button mat-button color="primary" [disabled]="!emiForm.valid" (click)="calculateEMI()">Submit</button>
         </div>
       </form>
     </ion-card-content>
