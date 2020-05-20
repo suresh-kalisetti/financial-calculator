@@ -13,7 +13,7 @@
       "androidScaleType": "CENTER_CROP",
       "androidSpinnerStyle": "large",
       "iosSpinnerStyle": "small",
-      "spinnerColor": "#999999",
+      "spinnerColor": "#ffffff",
       "showSpinner": true,
       "splashFullScreen": true,
       "splashImmersive": true
