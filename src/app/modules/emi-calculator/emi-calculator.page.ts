@@ -1,8 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Subject } from 'rxjs/internal/Subject';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
-import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-emi-calculator',
@@ -11,22 +8,17 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class EmiCalculatorPage implements OnInit, OnDestroy {
   emiForm: FormGroup;
-  unSubscribe: Subject<any> = new Subject<any>();
   showResult = false;
 
   constructor(
-    private fb: FormBuilder,
-    private cp: CurrencyPipe
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     this.initForm();
-    this.initCurrencyConversion();
   }
 
   ngOnDestroy() {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
   }
 
   initForm() {
@@ -36,18 +28,6 @@ export class EmiCalculatorPage implements OnInit, OnDestroy {
       loanTenure: ['', Validators.required],
       tenureType: ['1', Validators.required]
     })
-  }
-
-  initCurrencyConversion() {
-    // this.emiForm.controls.loanAmount.valueChanges
-    //   .pipe(takeUntil(this.unSubscribe))
-    //   .subscribe(val => {
-    //     debugger;
-    //     const formatted = this.cp.transform(val, 'INR');
-    //     if (val != formatted) {
-    //       this.emiForm.controls.loanAmount.patchValue(formatted);
-    //     }
-    //   })
   }
 
   calculateEMI() {

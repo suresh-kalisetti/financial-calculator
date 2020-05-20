@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'emi-calculator',
     loadChildren: () => import('./modules/emi-calculator/emi-calculator.module').then( m => m.EmiCalculatorPageModule)
+  },
+  {
+    path: 'fd-calculator',
+    loadChildren: () => import('./modules/fd-calculator/fd-calculator.module').then( m => m.FdCalculatorPageModule)
   }
 ];
 

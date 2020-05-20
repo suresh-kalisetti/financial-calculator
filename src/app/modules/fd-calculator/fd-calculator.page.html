@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>FD Calculator</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">EMI Calculator</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="fdForm">
+        <mat-form-field class="full-width">
+          <mat-label>FD Amount</mat-label>
+          <input type="number" matInput placeholder="Enter FD Amount" formControlName="fdAmount">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>FD Period</mat-label>
+          <input type="number" matInput placeholder="Enter FD Period" formControlName="fdPeriod">
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-flat-button (click)="clearForm()">Clear</button>
+          <button mat-button color="primary" [disabled]="!fdForm.valid" (click)="calculateFD()">Submit</button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="showResult">
+    <ion-card-content>
+      Monthly EMI - 1000
+    </ion-card-content>
+  </ion-card>
+</ion-content>

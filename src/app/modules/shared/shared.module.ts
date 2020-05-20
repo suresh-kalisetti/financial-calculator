@@ -24,9 +24,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatRadioModule,
     ReactiveFormsModule
-  ],
-  providers: [
-    CurrencyPipe
   ]
 })
 export class SharedModule { }

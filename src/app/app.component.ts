@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -10,20 +11,26 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
+  canExit = false;
   public appPages = [
     {
       title: 'EMI Calculator',
       url: '/emi-calculator'
+    },
+    {
+      title: 'FD Calculator',
+      url: '/fd-calculator'
     }
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public toastController: ToastController
   ) {
     this.initializeApp();
+    this.initAppExit();
   }
 
   initializeApp() {
@@ -34,9 +41,32 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+
+  }
+
+  initAppExit() {
+    if (this.platform.is('android')) {
+      this.platform.backButton.subscribeWithPriority(0, () => {
+        if (this.canExit) {
+          navigator['app'].exitApp();
+        }
+        else {
+          this.presentExitToast();
+          this.canExit = true;
+          setTimeout(() => {
+            this.canExit = false;
+          }, 3000);
+        }
+      })
     }
   }
+
+  async presentExitToast() {
+    const toast = await this.toastController.create({
+      message: 'Press back again to exit',
+      duration: 2000
+    });
+    toast.present();
+  }
+
 }
