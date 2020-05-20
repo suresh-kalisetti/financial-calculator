@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 
@@ -17,7 +18,8 @@ import { ChartsModule } from 'ng2-charts';
     MatButtonModule,
     MatRadioModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    MatSelectModule
   ],
   exports: [
     CommonModule,
@@ -26,10 +28,8 @@ import { ChartsModule } from 'ng2-charts';
     MatButtonModule,
     MatRadioModule,
     ReactiveFormsModule,
-    ChartsModule
-  ],
-  providers: [
-    CurrencyPipe
+    ChartsModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }

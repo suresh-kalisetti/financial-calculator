@@ -20,19 +20,52 @@
           <input type="number" matInput placeholder="Enter FD Amount" formControlName="fdAmount">
         </mat-form-field>
         <mat-form-field class="full-width">
-          <mat-label>FD Period</mat-label>
-          <input type="number" matInput placeholder="Enter FD Period" formControlName="fdPeriod">
+          <mat-label>FD Tenure</mat-label>
+          <input type="number" matInput placeholder="Enter FD Period" formControlName="fdTenure">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>FD Tenure Type</mat-label>
+          <mat-select formControlName="fdTenureType">
+            <mat-option *ngFor="let tenure of fdTenure" [value]="tenure">
+              {{tenure}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>FD Interest(%)</mat-label>
+          <input type="number" matInput placeholder="Enter FD Interest(%)" formControlName="interest">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Compounding Frequency</mat-label>
+          <mat-select formControlName="frequency">
+            <mat-option *ngFor="let frequency of frequencies" [value]="frequency">
+              {{frequency}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <div class="button-row">
-          <button mat-flat-button (click)="clearForm()">Clear</button>
-          <button mat-button color="primary" [disabled]="!fdForm.valid" (click)="calculateFD()">Submit</button>
+          <button mat-raised-button (click)="clearForm()">Clear</button>
+          <button mat-raised-button color="primary" [disabled]="!fdForm.valid"
+            (click)="calculateFD()">Calculate</button>
         </div>
       </form>
     </ion-card-content>
   </ion-card>
   <ion-card *ngIf="showResult">
     <ion-card-content>
-      Monthly EMI - 1000
+      <div>
+        Maturity Amount: {{maturityAmountFormatted}}
+      </div>
+      <div>
+        Total Interest Earned: {{totalInterestEarned}}
+      </div>
+      <div class="chart-container">
+        <div class="chart">
+          <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+            [options]="pieChartOptions" [colors]="pieChartColors" [legend]="pieChartLegend">
+          </canvas>
+        </div>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

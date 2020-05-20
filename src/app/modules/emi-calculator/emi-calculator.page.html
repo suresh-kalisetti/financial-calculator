@@ -21,8 +21,8 @@
           <input type="number" matInput placeholder="Enter Loan Amount" formControlName="loanAmount">
         </mat-form-field>
         <mat-form-field class="full-width">
-          <mat-label>Interest Rate</mat-label>
-          <input type="number" matInput placeholder="Enter Interest Rate" formControlName="interestRate">
+          <mat-label>Interest Rate(%)</mat-label>
+          <input type="number" matInput placeholder="Enter Interest Rate(%)" formControlName="interestRate">
         </mat-form-field>
         <mat-form-field class="full-width">
           <mat-label>Loan Tenure</mat-label>
@@ -34,7 +34,7 @@
         </mat-radio-group>
         <div class="button-row">
           <button mat-raised-button (click)="clearForm()">Clear</button>
-          <button mat-raised-button color="primary" [disabled]="!emiForm.valid" (click)="calculateEMI()">Submit</button>
+          <button mat-raised-button color="primary" [disabled]="!emiForm.valid" (click)="calculateEMI()">Calculate</button>
         </div>
       </form>
     </ion-card-content>
@@ -42,13 +42,13 @@
   <ion-card *ngIf="showResult">
     <ion-card-content>
       <div>
-        Monthly EMI - {{emiAmountFormatted}}
+        Monthly EMI: {{emiAmountFormatted}}
       </div>
       <div>
-        Total Interest Payable - {{totalInterest}}
+        Total Interest Payable: {{totalInterest}}
       </div>
       <div>
-        Total Payment - {{totalPayment}}
+        Total Payment: {{totalPayment}}
       </div>
       <div class="chart-container">
         <div class="chart">
