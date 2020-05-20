@@ -41,7 +41,22 @@
   </ion-card>
   <ion-card *ngIf="showResult">
     <ion-card-content>
-      Monthly EMI - 1000
+      <div>
+        Monthly EMI - {{emiAmountFormatted}}
+      </div>
+      <div>
+        Total Interest Payable - {{totalInterest}}
+      </div>
+      <div>
+        Total Payment - {{totalPayment}}
+      </div>
+      <div class="chart-container">
+        <div class="chart">
+          <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+            [options]="pieChartOptions" [colors]="pieChartColors" [legend]="pieChartLegend">
+          </canvas>
+        </div>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>
