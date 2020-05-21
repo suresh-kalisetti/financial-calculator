@@ -21,6 +21,10 @@ export class AppComponent implements OnInit {
     {
       title: 'FD Calculator',
       url: '/fd-calculator'
+    },
+    {
+      title: 'RD Calculator',
+      url: '/rd-calculator'
     }
   ];
 

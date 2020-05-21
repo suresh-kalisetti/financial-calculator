@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'fd-calculator',
     loadChildren: () => import('./modules/fd-calculator/fd-calculator.module').then( m => m.FdCalculatorPageModule)
+  },
+  {
+    path: 'rd-calculator',
+    loadChildren: () => import('./modules/rd-calculator/rd-calculator.module').then( m => m.RdCalculatorPageModule)
   }
 ];
 

@@ -15,8 +15,6 @@ export class FdCalculatorPage implements OnInit {
   maturityAmount: number;
   maturityAmountFormatted: string;
   totalInterestEarned: string;
-  fdTenure = ["Years", "Months", "Days"];
-  frequencies = ["Monthly", "Quarterly", "Half Yearly", "Yearly"];
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -52,10 +50,10 @@ export class FdCalculatorPage implements OnInit {
   initForm() {
     this.fdForm = this.fb.group({
       fdAmount: ['', Validators.required],
-      fdTenure: ['', Validators.required],
-      fdTenureType: ['', Validators.required],
+      fdDuration: ['', Validators.required],
+      fdDurationType: ['', Validators.required],
       interest: ['', Validators.required],
-      frequency: ['', Validators.required]
+      frequency: ['Quarterly', Validators.required]
     })
   }
 
@@ -63,11 +61,9 @@ export class FdCalculatorPage implements OnInit {
     this.pieChartData = [];
     const P = Math.round(this.fdForm.controls.fdAmount.value);
     const r = this.fdForm.controls.interest.value / 100;
-    const frequency = this.fdForm.controls.frequency.value;
-    const n = frequency === "Monthly" ? 12 : frequency === "Quarterly" ? 4 : frequency === "Half Yearly" ? 2 : 1;
-    const tenure = this.fdForm.controls.fdTenure.value;
-    const tenureType = this.fdForm.controls.fdTenureType.value;
-    const t = tenureType === "Days" ? tenure/365 : tenureType === "Months" ? tenure/12 : tenure;
+    const n = this.fdForm.controls.frequency.value;;
+    const duration = this.fdForm.controls.fdDuration.value;
+    const t = this.fdForm.controls.fdDuration.value/this.fdForm.controls.fdDurationType.value;
     this.maturityAmount = Math.round(P * Math.pow((1+ (r/n)), n*t));
     this.maturityAmountFormatted = this.commonService.formatCurrency(this.maturityAmount);
     this.totalInterestEarned = this.commonService.formatCurrency(this.maturityAmount - P);
@@ -78,8 +74,8 @@ export class FdCalculatorPage implements OnInit {
 
   clearForm() {
     this.fdForm.controls.fdAmount.setValue('');
-    this.fdForm.controls.fdTenure.setValue('');
-    this.fdForm.controls.fdTenureType.setValue('');
+    this.fdForm.controls.fdDuration.setValue('');
+    this.fdForm.controls.fdDurationType.setValue('');
     this.fdForm.controls.interest.setValue('');
     this.fdForm.controls.frequency.setValue('');
     this.showResult = false;

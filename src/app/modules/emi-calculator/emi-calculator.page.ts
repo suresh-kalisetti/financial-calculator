@@ -53,7 +53,7 @@ export class EmiCalculatorPage implements OnInit, OnDestroy {
       loanAmount: ['', Validators.required],
       interestRate: ['', Validators.required],
       loanTenure: ['', Validators.required],
-      tenureType: ['1', Validators.required]
+      tenureType: [1, Validators.required]
     })
   }
 
@@ -61,7 +61,7 @@ export class EmiCalculatorPage implements OnInit, OnDestroy {
     this.pieChartData = [];
     const P = Math.round(this.emiForm.controls.loanAmount.value);
     const R = this.emiForm.controls.interestRate.value / (12 * 100);
-    const N = Math.round(this.emiForm.controls.tenureType.value == "1" ? this.emiForm.controls.loanTenure.value : (12 * this.emiForm.controls.loanTenure.value));
+    const N = Math.round(this.emiForm.controls.tenureType.value * this.emiForm.controls.loanTenure.value);
     this.emiAmount = Math.round((P * R * (Math.pow(1 + R, N))) / (Math.pow(1 + R, N) - 1));
     this.emiAmountFormatted = this.commonService.formatCurrency(this.emiAmount);
     this.pieChartData.push(P);
