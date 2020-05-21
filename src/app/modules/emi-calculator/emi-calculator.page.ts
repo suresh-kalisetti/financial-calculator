@@ -75,7 +75,7 @@ export class EmiCalculatorPage implements OnInit, OnDestroy {
     this.emiForm.controls.loanAmount.setValue('');
     this.emiForm.controls.interestRate.setValue('');
     this.emiForm.controls.loanTenure.setValue('');
-    this.emiForm.controls.tenureType.setValue('1');
+    this.emiForm.controls.tenureType.setValue(1);
     this.showResult = false;
   }
 

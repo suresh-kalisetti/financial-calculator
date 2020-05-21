@@ -71,9 +71,9 @@ export class RdCalculatorPage implements OnInit {
       amounts.push(a);
     }
 
-    this.maturityAmount = amounts.reduce(function(previousValue, currentValue, index, array) {
+    this.maturityAmount = Math.round(amounts.reduce(function(previousValue, currentValue, index, array) {
       return previousValue + currentValue;
-    });
+    }));
     this.maturityAmountFormatted = this.commonService.formatCurrency(this.maturityAmount);
     this.totalInterestEarned = this.commonService.formatCurrency(this.maturityAmount - p * t);
     this.principalAmount = this.commonService.formatCurrency(p * t);

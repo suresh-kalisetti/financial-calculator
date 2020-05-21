@@ -53,7 +53,7 @@ export class FdCalculatorPage implements OnInit {
       fdDuration: ['', Validators.required],
       fdDurationType: ['', Validators.required],
       interest: ['', Validators.required],
-      frequency: ['Quarterly', Validators.required]
+      frequency: [4, Validators.required]
     })
   }
 
@@ -77,7 +77,7 @@ export class FdCalculatorPage implements OnInit {
     this.fdForm.controls.fdDuration.setValue('');
     this.fdForm.controls.fdDurationType.setValue('');
     this.fdForm.controls.interest.setValue('');
-    this.fdForm.controls.frequency.setValue('');
+    this.fdForm.controls.frequency.setValue(4);
     this.showResult = false;
   }
 
